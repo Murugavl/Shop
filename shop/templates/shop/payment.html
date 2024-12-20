@@ -1,7 +1,7 @@
 {% extends 'shop/layouts/main.html' %}
 
 {% block title %}
-  Cart | ShopKart
+  Payment | ShopKart
 {% endblock title %}
 
 {% block content %}
@@ -9,10 +9,10 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h4 class="mb-3">Cart Items</h4>
+          <h4 class="mb-3">Review Your Order</h4>
           <hr style="border-color:#b8bfc2;">
         </div>
-      
+
         {% if cart %}
         <table class="table table-striped">
             <thead>
@@ -22,7 +22,6 @@
                     <th>Unit Price</th>
                     <th>Quantity</th>
                     <th>Amount</th>
-                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,41 +31,28 @@
                     <td>{{item.product.name}}</td>
                     <td>{{item.product.selling_price | stringformat:'d'}}</td>
                     <td>{{item.product_qty}}</td>
-                    <td class="amt">{{item.total_cost | stringformat:'d'}}</td>
-                    <td>
-                        <a href="{% url 'remove_cart' item.id %}" 
-                           onclick="return confirm('Are you sure you want to remove this item from your cart?')" 
-                           class="btn btn-danger btn-sm">
-                           <i class="fa fa-trash"></i> Remove
-                        </a>
-                    </td>
+                    <td>{{item.total_cost | stringformat:'d'}}</td>
                 </tr>
                 {% endfor %}
                 <tr>
                     <td colspan="4" class="text-right"><b>Total Amount</b></td>
-                    <th id="net">0</th>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="{% url 'payment'%}">
-                            <i class="fa fa-check-circle"></i> Check Out
-                        </a>
-                    </td>
+                    <th>{{ total_cost | stringformat:'d' }}</th>
                 </tr>
             </tbody>
         </table>
+
+        <div class="text-center mt-4">
+            <div class="text-center mt-4">
+                <h5>Proceed to Payment</h5>
+                <a href="{% url 'make_payment' %}" class="btn btn-success btn-lg">Pay Now</a>
+            </div>
+        </div>
+
         {% else %}
         <p>Your cart is empty. Please add items to your cart before checking out.</p>
         {% endif %}
       </div>
     </div>
   </section>
-
-  <script>
-    const nodes = document.querySelectorAll('.amt');
-    const arr = Array.from(nodes);
-    const res = arr.reduce((acc, curr) => {
-      return acc += Number(curr.textContent);
-    }, 0);
-    document.getElementById("net").innerHTML = "Rs : " + res;
-  </script>
 
 {% endblock content %}

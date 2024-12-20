@@ -130,3 +130,17 @@ def remove_fav(request,fid):
   item=Favourite.objects.get(id=fid)
   item.delete()
   return redirect("/favviewpage")
+
+def payment_page(request):
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+        if cart_items:
+            total_cost = sum([item.total_cost for item in cart_items])
+            return render(request, "shop/payment.html", {"cart": cart_items, "total_cost": total_cost})
+        else:
+            return render(request, "shop/payment.html", {"message": "Your cart is empty. Please add items to your cart before checking out."})
+    else:
+        return redirect("/login")
+    
+def make_payment_page(request):
+  return render(request,'shop/make_payment.html')
