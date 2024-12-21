@@ -68,12 +68,11 @@ a {
 }
 
 .table-break {
-
   font-weight: bold;
   background-color: #ffffff;
 }
 .table-info {
-
+  border-radius: 10px;
   font-weight: bold;
   background-color: #f0f8ff;
 }
@@ -88,4 +87,14 @@ a {
 
 .table-bordered td, .table-bordered th {
   border: 1px solid #ddd;
+}
+
+.input_field::-webkit-outer-spin-button,
+.input_field::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+.input_field[type="number"] {
+-moz-appearance: textfield;
 }

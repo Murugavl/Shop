@@ -1,11 +1,14 @@
 {% extends 'shop/layouts/main.html' %}
 
+{% load static %}
+
 {% block title %}
-ShopKart | Online Shopping
+Shop | Online Shopping
 {% endblock title %}
 
 {% block content %}
-{% include 'shop/inc/slider.html' %}
+
+<img src="{% static 'images/ecommerce_website_banner.jpeg' %}" class="w-100" style="margin-top: 6rem;">
 
 <div class="container" style="margin-top:70px;">
   <div class="row g-4">
@@ -38,7 +41,7 @@ ShopKart | Online Shopping
   .image-container {
     position: relative;
     width: 100%;
-    padding-top: 100%; /* Square Aspect Ratio */
+    padding-top: 100%; 
     overflow: hidden;
   }
 
