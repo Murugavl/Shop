@@ -8,14 +8,14 @@
   <section class="bg-light py-4 my-5" style="min-height:600px;">
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          <h4 class="mb-3">Review Your Order</h4>
+        <div class="col-12 text-center">
+          <h4 class="mb-4 text-primary font-weight-bold">Review Your Order</h4>
           <hr style="border-color:#b8bfc2;">
         </div>
 
         {% if cart %}
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark text-center">
                 <tr>
                     <th>Image</th>
                     <th>Product Name</th>
@@ -26,30 +26,33 @@
             </thead>
             <tbody>
                 {% for item in cart %}
-                <tr>
-                    <td><img src="{{item.product.product_image.url}}" height="75px" alt="{{item.product.name}}"></td>
+                <tr class="text-center">
+                    <td><img src="{{item.product.product_image.url}}" class="cart-item-img" alt="{{item.product.name}}" style="max-width: 80px; height: auto;"></td>
                     <td>{{item.product.name}}</td>
-                    <td>{{item.product.selling_price | stringformat:'d'}}</td>
+                    <td>Rs.{{item.product.selling_price | stringformat:'d'}}</td>
                     <td>{{item.product_qty}}</td>
-                    <td>{{item.total_cost | stringformat:'d'}}</td>
+                    <td>Rs.{{item.total_cost | stringformat:'d'}}</td>
                 </tr>
                 {% endfor %}
-                <tr>
+                  <tr class="table-break">
+                    <td colspan="6" class="py-3"></td> 
+                  </tr>
+                <tr class="table-info">
                     <td colspan="4" class="text-right"><b>Total Amount</b></td>
-                    <th>{{ total_cost | stringformat:'d' }}</th>
+                    <th class="text-center">Rs.{{ total_cost | stringformat:'d' }}</th>
                 </tr>
             </tbody>
         </table>
 
         <div class="text-center mt-4">
-            <div class="text-center mt-4">
-                <h5>Proceed to Payment</h5>
-                <a href="{% url 'make_payment' %}" class="btn btn-success btn-lg">Pay Now</a>
-            </div>
+            <h5>Proceed to Payment</h5>
+            <a href="{% url 'make_payment' %}" class="btn btn-success btn-lg btn-rounded">
+                <i class="fa fa-credit-card"></i> Pay Now
+            </a>
         </div>
 
         {% else %}
-        <p>Your cart is empty. Please add items to your cart before checking out.</p>
+        <p class="text-center">Your cart is empty. Please add items to your cart before checking out.</p>
         {% endif %}
       </div>
     </div>

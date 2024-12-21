@@ -37,7 +37,7 @@ Collections | Shop
   .image-container {
     position: relative;
     width: 100%;
-    padding-top: 75%; /* 4:3 Aspect Ratio */
+    padding-top: 75%; 
     overflow: hidden;
   }
 
@@ -53,6 +53,7 @@ Collections | Shop
   .card {
     border: 1px solid #ddd;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-bottom: 30px; /* Adds vertical spacing between cards */
   }
 
   .card:hover {
@@ -62,6 +63,10 @@ Collections | Shop
 
   .row.g-4 > * {
     margin-bottom: 1.5rem !important;
+  }
+
+  .row {
+    gap: 2rem; 
   }
 </style>
 {% endblock extra_css %}
