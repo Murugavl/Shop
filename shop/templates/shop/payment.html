@@ -34,11 +34,11 @@
                     <td>Rs.{{item.total_cost | stringformat:'d'}}</td>
                 </tr>
                 {% endfor %}
-                  <tr class="table-break">
-                    <td colspan="6" class="py-3"></td> 
-                  </tr>
+                <tr class="table-break" style="background-color: #ffffff; --bs-table-accent-bg: white;">
+                  <td colspan="6" class="py-3" style="border: none; background-color: #ffffff;"></td>
+                </tr>
                 <tr class="table-info">
-                    <td colspan="4" class="text-right"><b>Total Amount</b></td>
+                    <td colspan="4" style="text-align: left;"><b>Total Amount</b></td>
                     <th class="text-center">Rs.{{ total_cost | stringformat:'d' }}</th>
                 </tr>
             </tbody>

@@ -74,6 +74,7 @@ def cart_page(request):
     cart=Cart.objects.filter(user=request.user)
     return render(request,"shop/cart.html",{"cart":cart})
   else:
+    messages.success(request,"Login to See the Cart Items")
     return redirect("/")
   
 def add_to_cart(request):
@@ -124,6 +125,7 @@ def favviewpage(request):
     fav=Favourite.objects.filter(user=request.user)
     return render(request,"shop/fav.html",{"fav":fav})
   else:
+    messages.success(request,"Login to See the Favourite Items")
     return redirect("/")
  
 def remove_fav(request,fid):
