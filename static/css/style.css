@@ -50,46 +50,42 @@ a {
   z-index: 10;
 }
 
-.product-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+.cart-item-img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.btn-rounded {
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-rounded:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-break {
+
+  font-weight: bold;
+  background-color: #ffffff;
+}
+.table-info {
+
+  font-weight: bold;
+  background-color: #f0f8ff;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table th, .table td {
+  text-align: center;
+}
+
+.table-bordered td, .table-bordered th {
   border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.card-img-wrapper {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-}
-
-.card-img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.card-body {
-  padding: 15px;
-}
-
-.card-title {
-  font-size: 1.2rem;
-}
-
-.card-text {
-  font-size: 0.9rem;
-}
-
-.card:hover {
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.row.gy-4 {
-  gap: 1rem 0;
 }

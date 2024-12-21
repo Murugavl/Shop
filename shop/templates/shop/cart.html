@@ -8,14 +8,14 @@
   <section class="bg-light py-4 my-5" style="min-height:600px;">
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          <h4 class="mb-3">Cart Items</h4>
+        <div class="col-12 text-center">
+          <h4 class="mb-4 text-primary font-weight-bold">Your Cart Items</h4>
           <hr style="border-color:#b8bfc2;">
         </div>
       
         {% if cart %}
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark text-center">
                 <tr>
                     <th>Image</th>
                     <th>Product Name</th>
@@ -27,34 +27,39 @@
             </thead>
             <tbody>
                 {% for item in cart %}
-                <tr>
-                    <td><img src="{{item.product.product_image.url}}" height="75px" alt="{{item.product.name}}"></td>
+                <tr class="text-center">
+                    <td><img src="{{item.product.product_image.url}}" class="cart-item-img" alt="{{item.product.name}}"></td>
                     <td>{{item.product.name}}</td>
-                    <td>{{item.product.selling_price | stringformat:'d'}}</td>
+                    <td>Rs.{{item.product.selling_price | stringformat:'d'}}</td>
                     <td>{{item.product_qty}}</td>
-                    <td class="amt">{{item.total_cost | stringformat:'d'}}</td>
+                    <td class="amt">Rs.{{item.total_cost | stringformat:'d'}}</td>
                     <td>
                         <a href="{% url 'remove_cart' item.id %}" 
                            onclick="return confirm('Are you sure you want to remove this item from your cart?')" 
-                           class="btn btn-danger btn-sm">
+                           class="btn btn-danger btn-sm btn-rounded">
                            <i class="fa fa-trash"></i> Remove
                         </a>
                     </td>
                 </tr>
                 {% endfor %}
-                <tr>
+                
+                <tr class="table-break">
+                    <td colspan="6" class="py-3"></td> 
+                </tr>
+                
+                <tr class="table-info">
                     <td colspan="4" class="text-right"><b>Total Amount</b></td>
-                    <th id="net">0</th>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="{% url 'payment'%}">
-                            <i class="fa fa-check-circle"></i> Check Out
+                    <th id="net" class="text-center">Rs : 0</th>
+                    <td class="text-center">
+                        <a class="btn btn-success btn-sm btn-rounded" href="{% url 'payment'%}">
+                            <i class="fa fa-check-circle"></i> Proceed to Checkout
                         </a>
                     </td>
                 </tr>
             </tbody>
         </table>
         {% else %}
-        <p>Your cart is empty. Please add items to your cart before checking out.</p>
+        <p class="text-center">Your cart is empty. Please add items to your cart before checking out.</p>
         {% endif %}
       </div>
     </div>
@@ -64,9 +69,10 @@
     const nodes = document.querySelectorAll('.amt');
     const arr = Array.from(nodes);
     const res = arr.reduce((acc, curr) => {
-      return acc += Number(curr.textContent);
+      const price = parseFloat(curr.textContent.replace('Rs.', '').trim());
+      return acc + (isNaN(price) ? 0 : price);
     }, 0);
-    document.getElementById("net").innerHTML = "Rs : " + res;
+    document.getElementById("net").innerHTML = "Rs. " + res.toFixed(2);
   </script>
 
 {% endblock content %}
